@@ -17,11 +17,11 @@ const videoURLs = [
     ["https://www.youtube.com/watch?v=1LqZ4_g18xk&ab_channel=EpicGames", "https://www.youtube.com/watch?v=3ZtedjN1JXY&ab_channel=WorldofWarcraft", "https://www.youtube.com/watch?v=YrlaQfHRjjo&ab_channel=PlayStation", "https://www.youtube.com/watch?v=-V-0L1HeeAA&ab_channel=PlayStationEurope"]
 ];
 const videoImages = [
-    ["URL_IMAGEN_1", "URL_IMAGEN_2", "URL_IMAGEN_3"],
-    ["URL_IMAGEN_4"],
-    ["URL_IMAGEN_5", "URL_IMAGEN_6", "URL_IMAGEN_7"],
-    ["URL_IMAGEN_8", "URL_IMAGEN_9", "URL_IMAGEN_10"],
-    ["URL_IMAGEN_11", "URL_IMAGEN_12", "URL_IMAGEN_13"],
+    ["/img/assesinds shadow.webp", "/img/heroe of strom.jpg", "/img/jurrasic survival.jpg"],
+    ["/img/gn.avif"],
+    ["/img/arck 2.webp", "/img/mario kong.jpg", "/img/mario rabbids.jpg"],
+    ["/img/pokemon scarlet and violet.jpg", "/img/pokemon scarlet and violet.jpg", "/img/pokemon leyendasz.webp"],
+
     ["URL_IMAGEN_14", "URL_IMAGEN_15", "URL_IMAGEN_16"],
     ["URL_IMAGEN_17", "URL_IMAGEN_18"],
     ["URL_IMAGEN_19", "URL_IMAGEN_20", "URL_IMAGEN_21", "URL_IMAGEN_22", "URL_IMAGEN_23"],
