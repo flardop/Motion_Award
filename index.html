@@ -24,6 +24,15 @@
             border-radius: 5px;
             cursor: pointer;
         }
+        .category {
+            margin-bottom: 20px;
+        }
+        .video-thumbnail {
+            width: 100px;
+            height: 100px;
+            border-radius: 10px;
+            margin-right: 10px;
+        }
     </style>
 </head>
 <body class="montserrat">
@@ -52,6 +61,15 @@
             <button id="name-submit-btn" class="btn btn-primary">Enviar</button>
         </div>
         <button id="start-quiz-btn" class="btn btn-success" style="display: none;">Iniciar Quiz</button>
+        
+        <!-- Sección para mostrar las votaciones de videojuegos -->
+        <div id="video-container" style="display: none;">
+            <!-- Contenedor de las categorías de videojuegos -->
+            <div id="categories-container">
+                <!-- Aquí se mostrarán las categorías y los videos de los juegos -->
+            </div>
+        </div>
+        
         <div id="question-container" style="display: none;">
             <p id="question"></p>
             <div id="options-container" class="btn-group-vertical"></div>

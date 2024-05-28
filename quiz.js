@@ -80,16 +80,29 @@ function showVideos() {
 }
 
 let userName;
-let currentQuestionIndex = 0;
-let score = 0;
-let timer;
-let interval;
-
 document.getElementById('name-submit-btn').addEventListener('click', function() {
     userName = document.getElementById('name-input').value;
     document.getElementById('name-input-container').style.display = 'none';
     document.getElementById('start-quiz-btn').style.display = 'block';
+    document.getElementById('video-container').style.display = 'block'; // Mostrar contenedor de videos
+    showVideos(); // Mostrar los videos de las categorías
 });
+
+const questionElement = document.getElementById("question");
+const optionsContainer = document.getElementById("options-container");
+const feedbackElement = document.getElementById("feedback");
+const scoreElement = document.getElementById("score-value");
+const timerElement = document.getElementById("timer-value");
+const notasElement = document.getElementById("mensajenota");
+const score2Element = document.getElementById("score");
+const timer2Element = document.getElementById("timer");
+
+const backgroundMusic = document.getElementById("background-music");
+
+let currentQuestionIndex = 0;
+let score = 0;
+let timer;
+let interval;
 
 document.getElementById('start-quiz-btn').addEventListener('click', function() {
     document.getElementById('start-quiz-btn').style.display = 'none';
@@ -214,4 +227,21 @@ function endQuiz() {
     timerElement.style.display = "none";
     score2Element.style.display = "none";
     timer2Element.style.display = "none";
-    document.getElementById
+    document.getElementById('restart-container').style.display = 'block';
+
+    // Ocultar los botones de "Salir de partida" y "Terminar intento"
+    document.getElementById('exit-quiz-btn').style.display = 'none';
+    document.getElementById('end-quiz-btn').style.display = 'none';
+
+    stopMusic();
+}
+    
+function playMusic() {
+    backgroundMusic.play();
+}
+
+function stopMusic() {
+    backgroundMusic.pause();
+    backgroundMusic.currentTime = 0; // Reiniciar la música al inicio
+}
+
