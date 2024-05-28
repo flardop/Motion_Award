@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Votaciones Categorías Videojuegos</title>
     <link rel="icon" href="img/favicon.png" type="image/x-icon">
-    <!-- Firebase SDKs -->
     <script src="https://www.gstatic.com/firebasejs/13.10.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/13.10.1/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/13.10.1/firebase-firestore.js"></script>
@@ -47,10 +46,6 @@
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
-        #video-popup video {
-            width: 100%;
-            height: auto;
-        }
         #overlay {
             display: none;
             position: fixed;
@@ -61,6 +56,7 @@
             background: rgba(0, 0, 0, 0.5);
             z-index: 999;
         }
+
     </style>
 </head>
 <body>
@@ -86,10 +82,10 @@
         </div>
 
         <div id="video-popup">
-            <video controls></video>
+            <iframe id="video-player" width="560" height="315" frameborder="0" allowfullscreen></iframe>
             <button id="close-video-popup" class="btn btn-danger mt-3">Cerrar</button>
         </div>
-        <div id="overlay"></div>
+        <div id="overlay"></div>        
 
         <div id="mensajenota" class="mt-3"></div>
         <div id="feedback" class="mt-3"></div>

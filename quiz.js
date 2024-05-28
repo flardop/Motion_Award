@@ -1,5 +1,3 @@
-
-
 let userName;
 let currentCategoryIndex = 0;
 let votedCategories = new Set();
@@ -19,7 +17,7 @@ const videoURLs = [
     ["https://www.youtube.com/watch?v=1LqZ4_g18xk&ab_channel=EpicGames", "https://www.youtube.com/watch?v=3ZtedjN1JXY&ab_channel=WorldofWarcraft", "https://www.youtube.com/watch?v=YrlaQfHRjjo&ab_channel=PlayStation", "https://www.youtube.com/watch?v=-V-0L1HeeAA&ab_channel=PlayStationEurope"]
 ];
 const videoImages = [
-    [href="/img/favicon.png", "URL_IMAGEN_2", "URL_IMAGEN_3"],
+    ["URL_IMAGEN_1", "URL_IMAGEN_2", "URL_IMAGEN_3"],
     ["URL_IMAGEN_4"],
     ["URL_IMAGEN_5", "URL_IMAGEN_6", "URL_IMAGEN_7"],
     ["URL_IMAGEN_8", "URL_IMAGEN_9", "URL_IMAGEN_10"],
@@ -28,7 +26,8 @@ const videoImages = [
     ["URL_IMAGEN_17", "URL_IMAGEN_18"],
     ["URL_IMAGEN_19", "URL_IMAGEN_20", "URL_IMAGEN_21", "URL_IMAGEN_22", "URL_IMAGEN_23"],
     ["URL_IMAGEN_24", "URL_IMAGEN_25", "URL_IMAGEN_26"],
-    ["URL_IMAGEN_27", "URL_IMAGEN_28", "URL_IMAGEN_29", "URL_IMAGEN_30"]
+    ["URL_IMAGEN_27", "URL_IMAGEN_28", "URL_IMAGEN_29", "URL_IMAGEN_30"],
+    ["URL_IMAGEN_31", "URL_IMAGEN_32", "URL_IMAGEN_33", "URL_IMAGEN_34"]
 ];
 
 document.getElementById('name-submit-btn').addEventListener('click', () => {
@@ -66,8 +65,6 @@ document.getElementById('skip-category-btn').addEventListener('click', () => {
     }
 });
 
-document.getElementById('close-video-popup').addEventListener('click', closeVideoPopup);
-
 function showCategory() {
     const category = categories[currentCategoryIndex];
     const container = document.getElementById('video-container');
@@ -94,20 +91,22 @@ function showCategory() {
     });
 }
 
-function voteForNominee(category, url) {
-    if (votedCategories.has(category)) {
-        alert('Ya has votado en esta categoría.');
-        return;
-    }
-    votedCategories.add(category);
-    // Aquí iría la lógica para guardar el voto en la base de datos
-    alert('Gracias por tu voto!');
-}
-
 function openVideoPopup(url) {
     const videoPopup = document.getElementById('video-popup');
     const overlay = document.getElementById('overlay');
-    videoPopup.querySelector('video').src = url;
+    const videoPlayer = document.getElementById('video-player');
+    
+    // Check if the URL is from YouTube and format it correctly
+    let embedUrl;
+    if (url.includes("youtube.com")) {
+        const videoId = url.split("v=")[1].split("&")[0];
+        embedUrl = `https://www.youtube.com/embed/${videoId}`;
+    } else {
+        // Handle other video URLs if necessary
+        embedUrl = url;
+    }
+
+    videoPlayer.src = embedUrl;
     videoPopup.style.display = 'block';
     overlay.style.display = 'block';
 }
@@ -115,10 +114,41 @@ function openVideoPopup(url) {
 function closeVideoPopup() {
     const videoPopup = document.getElementById('video-popup');
     const overlay = document.getElementById('overlay');
-    videoPopup.querySelector('video').src = '';
+    const videoPlayer = document.getElementById('video-player');
+    videoPlayer.src = '';
     videoPopup.style.display = 'none';
     overlay.style.display = 'none';
 }
+
+document.getElementById('close-video-popup').addEventListener('click', closeVideoPopup);
+
+
+function voteForNominee(category, url) {
+    if (votedCategories.has(category)) {
+        alert('Ya has votado en esta categoría.');
+        return;
+    }
+    votedCategories.add(category);
+    alert('Gracias por tu voto!');
+}
+
+function playVideo(url) {
+    const videoPopup = document.getElementById('video-popup');
+    const overlay = document.getElementById('overlay');
+    const videoPlayer = document.getElementById('video-player');
+    videoPlayer.src = url.replace("watch?v=", "embed/");
+    videoPopup.style.display = 'block';
+    overlay.style.display = 'block';
+}
+
+document.getElementById('close-video-popup').addEventListener('click', () => {
+    const videoPopup = document.getElementById('video-popup');
+    const overlay = document.getElementById('overlay');
+    const videoPlayer = document.getElementById('video-player');
+    videoPlayer.src = '';
+    videoPopup.style.display = 'none';
+    overlay.style.display = 'none';
+});
 
 // Controles de música
 const backgroundMusic = document.getElementById('background-music');
@@ -133,4 +163,3 @@ muteMusicButton.addEventListener('click', () => {
         muteMusicButton.textContent = 'Reproducir Música';
     }
 });
-
