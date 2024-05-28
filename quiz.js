@@ -1,42 +1,95 @@
-const quizData = [
-    { question: "¿Cuál es la capital de Francia?", options: ["París", "Berlín", "Madrid", "Roma"], answer: "París" },
-    { question: "¿Cuánto es 2 + 2?", options: ["3", "4", "5", "6"], answer: "4" },
-    { question: "¿Cuál es la capital de España?", options: ["París", "Berlín", "Madrid", "Roma"], answer: "Madrid" },
-];
+// Función para mostrar los videos de cada categoría
+function showVideos() {
+    // Categorías y URLs de los videos
+    const categories = ["Los Mejores / Cinemática Realista", "Los Mejores / 3D / Cinemáticas Detallistas", "Promo de juego", "Secuencia de título de juego", "Mejor Trailer Cinemático", "Mejor Diseño de Personajes", "Mejor Dirección de Arte", "Mejor Animación", "Mejor Diseño de Mundo", "Mejor Uso de Efectos Visuales", "Mejor Montaje de Trailer"];
+    const videoURLs = [
+        ["https://www.youtube.com/watch?v=vovkzbtYBC8&ab_channel=Ubisoft", "https://www.youtube.com/watch?v=0ecv0bT9DEo&ab_channel=HeroesoftheStorm", "https://www.youtube.com/watch?v=YrlaQfHRjjo&ab_channel=PlayStation"],
+        ["https://www.youtube.com/watch?v=6jY2f6OkpBo&ab_channel=GameSpotTrailers"],
+        ["https://www.youtube.com/watch?v=D8KbXpk2J9Y&ab_channel=ARK%3ASurvivalAscended", "https://www.youtube.com/watch?v=TcM4DUo3hkA&ab_channel=NintendoofAmerica", "https://www.youtube.com/watch?v=VEAusFKB368&ab_channel=NintendoofAmerica"],
+        ["https://www.youtube.com/watch?v=1qK958JRN-g&ab_channel=Nintendúo", "https://www.youtube.com/watch?v=ma2q9yYj_XM&ab_channel=GameSpot", "https://www.youtube.com/watch?v=1qK958JRN-g&ab_channel=Nintendúo"],
+        ["https://www.youtube.com/watch?v=vovkzbtYBC8&ab_channel=Ubisoft", "https://www.youtube.com/watch?v=0ecv0bT9DEo&ab_channel=HeroesoftheStorm", "https://www.youtube.com/watch?v=YrlaQfHRjjo&ab_channel=PlayStation"],
+        ["https://www.youtube.com/watch?v=dGQ4k4xnWvI&ab_channel=GameSpot", "https://www.youtube.com/watch?v=ma2q9yYj_XM&ab_channel=GameSpot", "https://www.youtube.com/watch?v=1qK958JRN-g&ab_channel=Nintendúo"],
+        ["https://www.youtube.com/watch?v=3ZtedjN1JXY&ab_channel=WorldofWarcraft", "https://www.youtube.com/watch?v=-V-0L1HeeAA&ab_channel=PlayStationEurope"],
+        ["https://www.youtube.com/watch?v=6uT8wGtB3yQ&ab_channel=BANDAINAMCOEurope", "https://www.youtube.com/watch?v=0SSYzl9fXOQ&ab_channel=IGN", "https://www.youtube.com/watch?v=ZHhqwBwmRkI&ab_channel=LeagueofLegends", "https://www.youtube.com/watch?v=1JSjZqV-YK8&ab_channel=Minecraft", "https://www.youtube.com/watch?v=YrlaQfHRjjo&ab_channel=PlayStation"],
+        ["https://www.youtube.com/watch?v=grp2-rpoMYw&ab_channel=BestGameCGI", "https://www.youtube.com/watch?v=G203e1HhixY&ab_channel=PlayStation", "https://www.youtube.com/watch?v=Axmg1E4HrVE&ab_channel=Ubisoft"],
+        ["https://www.youtube.com/watch?v=jNZ_3rE1Utk&ab_channel=WildGamerSK", "https://www.youtube.com/watch?v=ssrNcwxALS4&ab_channel=IGN", "https://www.youtube.com/watch?v=vovkzbtYBC8&ab_channel=Ubisoft", "https://www.youtube.com/watch?v=CNM6o9um1dc&ab_channel=PlayStation"]
+    ];
 
-// Función para barajar el array de preguntas
-function shuffleArray(array) {
-    for (let i = array.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [array[i], array[j]] = [array[j], array[i]];
-    }
+    // Imágenes correspondientes a cada video
+    const videoImages = [
+        ["URL_IMAGEN1", "URL_IMAGEN2", "URL_IMAGEN3"],
+        ["URL_IMAGEN4"],
+        ["URL_IMAGEN5", "URL_IMAGEN6", "URL_IMAGEN7"],
+        ["URL_IMAGEN8", "URL_IMAGEN9", "URL_IMAGEN10"],
+        ["URL_IMAGEN11", "URL_IMAGEN12", "URL_IMAGEN13"],
+        ["URL_IMAGEN14", "URL_IMAGEN15", "URL_IMAGEN16"],
+        ["URL_IMAGEN17", "URL_IMAGEN18"],
+        ["URL_IMAGEN19", "URL_IMAGEN20", "URL_IMAGEN21", "URL_IMAGEN22", "URL_IMAGEN23"],
+        ["URL_IMAGEN24", "URL_IMAGEN25", "URL_IMAGEN26"],
+        ["URL_IMAGEN27", "URL_IMAGEN28", "URL_IMAGEN29", "URL_IMAGEN30"]
+    ];
+
+    // Contenedor principal de los videos
+    const videoContainer = document.getElementById("video-container");
+
+    // Iterar sobre las categorías
+    categories.forEach((category, index) => {
+        // Crear un div para la categoría
+        const categoryDiv = document.createElement("div");
+        categoryDiv.classList.add("category");
+
+        // Crear título de la categoría
+        const categoryTitle = document.createElement("h2");
+        categoryTitle.textContent = category;
+        categoryDiv.appendChild(categoryTitle);
+
+        // Crear lista de videos
+        const videoList = document.createElement("ul");
+
+        // Iterar sobre los videos de la categoría
+        videoURLs[index].forEach((url, i) => {
+            const videoItem = document.createElement("li");
+
+            // Crear elemento de imagen
+            const videoImage = document.createElement("img");
+            videoImage.src = videoImages[index][i];
+            videoImage.alt = "Video Thumbnail";
+            videoImage.classList.add("video-thumbnail");
+
+            // Añadir la imagen al elemento de la lista
+            videoItem.appendChild(videoImage);
+
+            // Crear enlace de video
+            const videoLink = document.createElement("a");
+            videoLink.href = url;
+            videoLink.textContent = `Video ${i + 1}`;
+
+            // Añadir enlace de video al elemento de la lista
+            videoItem.appendChild(videoLink);
+
+            // Añadir elemento de video a la lista de videos
+            videoList.appendChild(videoItem);
+        });
+
+        // Añadir lista de videos al div de la categoría
+        categoryDiv.appendChild(videoList);
+
+        // Añadir div de categoría al contenedor principal de videos
+        videoContainer.appendChild(categoryDiv);
+    });
 }
 
-// Barajamos las preguntas al inicio
-shuffleArray(quizData);
-
 let userName;
+let currentQuestionIndex = 0;
+let score = 0;
+let timer;
+let interval;
+
 document.getElementById('name-submit-btn').addEventListener('click', function() {
     userName = document.getElementById('name-input').value;
     document.getElementById('name-input-container').style.display = 'none';
     document.getElementById('start-quiz-btn').style.display = 'block';
 });
-
-const questionElement = document.getElementById("question");
-const optionsContainer = document.getElementById("options-container");
-const feedbackElement = document.getElementById("feedback");
-const scoreElement = document.getElementById("score-value");
-const timerElement = document.getElementById("timer-value");
-const notasElement = document.getElementById("mensajenota");
-const score2Element = document.getElementById("score");
-const timer2Element = document.getElementById("timer");
-
-const backgroundMusic = document.getElementById("background-music");
-
-let currentQuestionIndex = 0;
-let score = 0;
-let timer;
-let interval;
 
 document.getElementById('start-quiz-btn').addEventListener('click', function() {
     document.getElementById('start-quiz-btn').style.display = 'none';
@@ -161,20 +214,4 @@ function endQuiz() {
     timerElement.style.display = "none";
     score2Element.style.display = "none";
     timer2Element.style.display = "none";
-    document.getElementById('restart-container').style.display = 'block';
-
-    // Ocultar los botones de "Salir de partida" y "Terminar intento"
-    document.getElementById('exit-quiz-btn').style.display = 'none';
-    document.getElementById('end-quiz-btn').style.display = 'none';
-
-    stopMusic();
-}
-    
-    function playMusic() {
-        backgroundMusic.play();
-    }
-    
-    function stopMusic() {
-        backgroundMusic.pause();
-        backgroundMusic.currentTime = 0; // Reiniciar la música al inicio
-    }
+    document.getElementById
