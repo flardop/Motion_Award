@@ -4,8 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Votaciones Categorías Videojuegos</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/quiz.css">
     <link rel="icon" href="img/favicon.png" type="image/x-icon">
     <!-- Firebase SDKs -->
     <script src="https://www.gstatic.com/firebasejs/13.10.1/firebase-app.js"></script>
@@ -13,6 +11,9 @@
     <script src="https://www.gstatic.com/firebasejs/13.10.1/firebase-firestore.js"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+        body {
+            font-family: 'Montserrat', sans-serif;
+        }
         .btn-music {
             position: fixed;
             bottom: 20px;
@@ -24,30 +25,45 @@
             border-radius: 5px;
             cursor: pointer;
         }
-        .category {
+        .video-item {
+            text-align: center;
             margin-bottom: 20px;
         }
         .video-thumbnail {
-            width: 100px;
-            height: 100px;
             border-radius: 10px;
-            margin-right: 10px;
+            cursor: pointer;
+            width: 100%;
+            max-width: 300px;
+        }
+        #video-popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 1000;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        #video-popup video {
+            width: 100%;
+            height: auto;
+        }
+        #overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 999;
         }
     </style>
 </head>
-<body class="montserrat">
-    <div class="waveWrapper waveAnimation">
-        <div class="waveWrapperInner bgTop">
-            <div class="wave waveTop" style="background-image: url('http://front-end-noobs.com/jecko/img/wave-top.png')"></div>
-        </div>
-        <div class="waveWrapperInner bgMiddle">
-            <div class="wave waveMiddle" style="background-image: url('http://front-end-noobs.com/jecko/img/wave-mid.png')"></div>
-        </div>
-        <div class="waveWrapperInner bgBottom">
-            <div class="wave waveBottom" style="background-image: url('http://front-end-noobs.com/jecko/img/wave-bot.png')"></div>
-        </div>
-    </div>
-
+<body>
     <div class="container">
         <h1 id="input-tittle">Motion Awards</h1>
         <audio id="background-music" loop>
@@ -61,21 +77,20 @@
             <button id="name-submit-btn" class="btn btn-primary">Enviar</button>
         </div>
         <button id="start-quiz-btn" class="btn btn-success" style="display: none;">Iniciar Quiz</button>
-        
-        <!-- Sección para mostrar las votaciones de videojuegos -->
-        <div id="video-container" style="display: none;">
-            <!-- Contenedor de las categorías de videojuegos -->
-            <div id="categories-container">
-                <!-- Aquí se mostrarán las categorías y los videos de los juegos -->
-            </div>
+
+        <div id="category-container" style="display: none;">
+            <div id="video-container"></div>
+            <button id="prev-category-btn" class="btn btn-secondary mt-3">Volver a la Categoría Anterior</button>
+            <button id="skip-category-btn" class="btn btn-warning mt-3">Skipear Categoría</button>
+            <button id="next-category-btn" class="btn btn-primary mt-3">Siguiente Categoría</button>
         </div>
-        
-        <div id="question-container" style="display: none;">
-            <p id="question"></p>
-            <div id="options-container" class="btn-group-vertical"></div>
-            <button id="exit-quiz-btn" class="btn btn-warning mt-3">Salir de la Partida</button>
-            <button id="end-quiz-btn" class="btn btn-danger mt-3">Terminar Intento</button>
+
+        <div id="video-popup">
+            <video controls></video>
+            <button id="close-video-popup" class="btn btn-danger mt-3">Cerrar</button>
         </div>
+        <div id="overlay"></div>
+
         <div id="mensajenota" class="mt-3"></div>
         <div id="feedback" class="mt-3"></div>
 
@@ -86,8 +101,6 @@
         </div>
     </div>
     
-    
     <script src="quiz.js"></script>
-    
 </body>
 </html>
