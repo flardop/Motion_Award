@@ -3,10 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Juego de Preguntas</title>
+    <title>Votaciones Categorías Videojuegos</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/quiz.css">
     <link rel="icon" href="img/favicon.png" type="image/x-icon">
+    <!-- Firebase SDKs -->
+    <script src="https://www.gstatic.com/firebasejs/12.1.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/12.1.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/12.1.1/firebase-firestore.js"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
         .btn-music {
@@ -56,36 +60,16 @@
         </div>
         <div id="mensajenota" class="mt-3"></div>
         <div id="feedback" class="mt-3"></div>
-        <div id="score" class="mt-3" style="display: none;">Puntuación: <span id="score-value">0</span></div>
+
         <div id="timer" class="mt-3" style="display: none;">Tiempo restante: <span id="timer-value">10</span> segundos</div>
         <div id="restart-container" style="display: none;">
             <button id="restart-btn" class="btn btn-primary">Volver a Empezar</button>
             <button id="return-home-btn" class="btn btn-secondary">Volver al Inicio</button>
         </div>
     </div>
-    <script>
-        window.onload = function() {
-            var audio = document.getElementById('background-music');
-            var muteButton = document.getElementById('mute-music-btn');
-            audio.volume = 0.5;
-
-            // Intenta reproducir el audio automáticamente
-            audio.play().catch(function(error) {
-                console.log('Reproducción automática impedida. El usuario debe interactuar con la página.');
-            });
-
-            // Función para silenciar y reactivar la música
-            muteButton.onclick = function() {
-                if (audio.muted) {
-                    audio.muted = false;
-                    muteButton.innerHTML = 'Silenciar Música';
-                } else {
-                    audio.muted = true;
-                    muteButton.innerHTML = 'Reactivar Música';
-                }
-            };
-        };
-    </script>
+    
+    
     <script src="quiz.js"></script>
+    
 </body>
 </html>
