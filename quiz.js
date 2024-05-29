@@ -2,32 +2,76 @@ let userName;
 let currentCategoryIndex = 0;
 let votedCategories = new Set();
 
-const categories = ["Los Mejores / Cinemática Realista", "Los Mejores / 3D / Cinemáticas Detallistas", "Promo de juego", "Secuencia de título de juego", "Mejor Trailer Cinemático", "Mejor Diseño de Personajes", "Mejor Dirección de Arte", "Mejor Animación", "Mejor Diseño de Mundo", "Mejor Uso de Efectos Visuales", "Mejor Montaje de Trailer"];
-const videoURLs = [
-    ["https://www.youtube.com/watch?v=vovkzbtYBC8&ab_channel=Ubisoft", "https://www.youtube.com/watch?v=0ecv0bT9DEo&ab_channel=HeroesoftheStorm", "https://www.youtube.com/watch?v=YrlaQfHRjjo&ab_channel=PlayStation"],
-    ["https://www.youtube.com/watch?v=6jY2f6OkpBo&ab_channel=GameSpotTrailers"],
-    ["https://www.youtube.com/watch?v=D8KbXpk2J9Y&ab_channel=ARK%3ASurvivalAscended", "https://www.youtube.com/watch?v=TcM4DUo3hkA&ab_channel=NintendoofAmerica", "https://www.youtube.com/watch?v=VEAusFKB368&ab_channel=NintendoofAmerica"],
-    ["https://www.youtube.com/watch?v=1qK958JRN-g&ab_channel=Nintendúo", "https://www.youtube.com/watch?v=ma2q9yYj_XM&ab_channel=GameSpot", "https://www.youtube.com/watch?v=1qK958JRN-g&ab_channel=Nintendúo"],
-    ["https://www.youtube.com/watch?v=vovkzbtYBC8&ab_channel=Ubisoft", "https://www.youtube.com/watch?v=0ecv0bT9DEo&ab_channel=HeroesoftheStorm", "https://www.youtube.com/watch?v=YrlaQfHRjjo&ab_channel=PlayStation"],
-    ["https://www.youtube.com/watch?v=dGQ4k4xnWvI&ab_channel=GameSpot", "https://www.youtube.com/watch?v=ma2q9yYj_XM&ab_channel=GameSpot", "https://www.youtube.com/watch?v=1qK958JRN-g&ab_channel=Nintendúo"],
-    ["https://www.youtube.com/watch?v=3ZtedjN1JXY&ab_channel=WorldofWarcraft", "https://www.youtube.com/watch?v=-V-0L1HeeAA&ab_channel=PlayStationEurope"],
-    ["https://www.youtube.com/watch?v=6uT8wGtB3yQ&ab_channel=BANDAINAMCOEurope", "https://www.youtube.com/watch?v=0SSYzl9fXOQ&ab_channel=IGN", "https://www.youtube.com/watch?v=ZHhqwBwmRkI&ab_channel=LeagueofLegends", "https://www.youtube.com/watch?v=1JSjZqV-YK8&ab_channel=Minecraft", "https://www.youtube.com/watch?v=YrlaQfHRjjo&ab_channel=PlayStation"],
-    ["https://www.youtube.com/watch?v=grp2-rpoMYw&ab_channel=BestGameCGI", "https://www.youtube.com/watch?v=G203e1HhixY&ab_channel=PlayStation", "https://www.youtube.com/watch?v=Axmg1E4HrVE&ab_channel=Ubisoft"],
-    ["https://www.youtube.com/watch?v=jNZ_3rE1Utk&ab_channel=WildGamerSK", "https://www.youtube.com/watch?v=ssrNcwxALS4&ab_channel=IGN", "https://www.youtube.com/watch?v=vovkzbtYBC8&ab_channel=Ubisoft", "https://www.youtube.com/watch?v=CNnoZNwsxLY&ab_channel=IGN"],
-    ["https://www.youtube.com/watch?v=1LqZ4_g18xk&ab_channel=EpicGames", "https://www.youtube.com/watch?v=3ZtedjN1JXY&ab_channel=WorldofWarcraft", "https://www.youtube.com/watch?v=YrlaQfHRjjo&ab_channel=PlayStation", "https://www.youtube.com/watch?v=-V-0L1HeeAA&ab_channel=PlayStationEurope"]
+const categories = [
+    "Promo de juego", 
+    "Secuencia de título de juego", 
+    "Mejor Trailer Cinemático", 
+    "Mejor Diseño de Personajes", 
+    "Mejor Dirección de Arte",
+    "Mejor Animación", 
+    "Mejor Diseño de Mundo", 
+    "Mejor Uso de Efectos Visuales", 
+    "Mejor Montaje de Trailer"
 ];
-const videoImages = [
-    ["/img/assesinds shadow.webp", "/img/heroe of strom.jpg", "/img/jurrasic survival.jpg"],
-    ["/img/gn.avif"],
-    ["/img/arck 2.webp", "/img/mario kong.jpg", "/img/mario rabbids.jpg"],
-    ["/img/pokemon scarlet and violet.jpg", "/img/pokemon scarlet and violet.jpg", "/img/pokemon leyendasz.webp"],
 
-    ["URL_IMAGEN_14", "URL_IMAGEN_15", "URL_IMAGEN_16"],
-    ["URL_IMAGEN_17", "URL_IMAGEN_18"],
-    ["URL_IMAGEN_19", "URL_IMAGEN_20", "URL_IMAGEN_21", "URL_IMAGEN_22", "URL_IMAGEN_23"],
-    ["URL_IMAGEN_24", "URL_IMAGEN_25", "URL_IMAGEN_26"],
-    ["URL_IMAGEN_27", "URL_IMAGEN_28", "URL_IMAGEN_29", "URL_IMAGEN_30"],
-    ["URL_IMAGEN_31", "URL_IMAGEN_32", "URL_IMAGEN_33", "URL_IMAGEN_34"]
+const videoURLs = [
+    [
+        "https://www.youtube.com/watch?v=InTFsZ8WvD8&ab_channel=GameSpot",
+        "https://www.youtube.com/watch?v=_zDZYrIUgKE&ab_channel=BandaiNamcoEntertainmentAmerica"
+    ],
+    [
+        "https://2020.motionawards.com/winner/gaming-game-title-sequence/",
+        "https://vimeo.com/105513191"
+    ],
+    [
+        "https://www.youtube.com/watch?v=D8KbXpk2J9Y&ab_channel=ARK%3ASurvivalAscended", 
+        "https://www.youtube.com/watch?v=TcM4DUo3hkA&ab_channel=NintendoofAmerica", 
+        "https://www.youtube.com/watch?v=VEAusFKB368&ab_channel=NintendoofAmerica"
+    ],
+    [
+        "https://www.youtube.com/watch?v=1qK958JRN-g&ab_channel=Nintendúo", 
+        "https://www.youtube.com/watch?v=ma2q9yYj_XM&ab_channel=GameSpot", 
+        "https://www.youtube.com/watch?v=1qK958JRN-g&ab_channel=Nintendúo"
+    ],
+    [
+        "https://www.youtube.com/watch?v=3ZtedjN1JXY&ab_channel=WorldofWarcraft", 
+        "https://www.youtube.com/watch?v=-V-0L1HeeAA&ab_channel=PlayStationEurope"
+    ],
+    [
+        "https://www.youtube.com/watch?v=6uT8wGtB3yQ&ab_channel=BANDAINAMCOEurope", 
+        "https://www.youtube.com/watch?v=0SSYzl9fXOQ&ab_channel=IGN", 
+        "https://www.youtube.com/watch?v=ZHhqwBwmRkI&ab_channel=LeagueofLegends", 
+        "https://www.youtube.com/watch?v=1JSjZqV-YK8&ab_channel=Minecraft"
+    ],
+    [
+        "https://www.youtube.com/watch?v=grp2-rpoMYw&ab_channel=BestGameCGI", 
+        "https://www.youtube.com/watch?v=G203e1HhixY&ab_channel=PlayStation", 
+        "https://www.youtube.com/watch?v=Axmg1E4HrVE&ab_channel=Ubisoft"
+    ],
+    [
+        "https://www.youtube.com/watch?v=jNZ_3rE1Utk&ab_channel=WildGamerSK", 
+        "https://www.youtube.com/watch?v=ssrNcwxALS4&ab_channel=IGN", 
+        "https://www.youtube.com/watch?v=vovkzbtYBC8&ab_channel=Ubisoft",
+        "https://www.youtube.com/watch?v=CNM6o9um1dc&ab_channel=PlayStation"
+        
+    ],
+    [
+        "https://www.youtube.com/watch?v=UrPQ6L1nXlM&ab_channel=PlayStation", 
+        "https://www.youtube.com/watch?v=zvborgKG7fw&ab_channel=WarnerBros.Games", 
+        "https://www.youtube.com/watch?v=2VawSnaxtSI&ab_channel=KINGDOMHEARTS"
+    ]
+];
+
+const videoImages = [
+    ["/img/fortnite s2 ch6.webp", "/img/souls 3.webp"],
+    ["/img/metro 3.jpg","/img/destiny.webp"],
+    ["/img/arck 2.webp", "/img/mario kong.jpg", "/img/mario rabbids.jpg"],
+    ["/img/pokemon scarlet and violet.jpg", "/img/pokemon scarlet and violet.jpg", "/img/pokemon leyendas z.webp"],
+    ["/img/dragon fligth wow.jpg", "/img/jurrasic world evolution.jpg"],
+    ["/img/elden ring.webp", "/img/descarga.jpg", "/img/lol.jpg", "/img/minecraft legends.jpg"],
+    ["/img/biomutant.jpg", "/img/bloodborne.jpg", "/img/avatar.jpg"],
+    ["/img/mirage.png", "/img/valhala.webp", "/img/assesinds shadow.webp", "/img/final xv.png"],
+    ["/img/mickey.jpg", "/img/multiversus.webp", "URL_IMAGEN_33", "kindom 3.jpg"]
 ];
 
 document.getElementById('name-submit-btn').addEventListener('click', () => {
