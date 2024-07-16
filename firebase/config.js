@@ -1,13 +1,17 @@
-firebase.initializeApp({
-    apiKey: "AIzaSyDYMG0FW5YwwBVCbF734emZEUH8oGhv16g",
-    authDomain: "motion-awards.firebaseapp.com",
-    projectId: "motion-awards",
-    storageBucket: "motion-awards.appspot.com",
-    messagingSenderId: "787587578699",
-    appId: "1:787587578699:web:e3883c7a00e32326f906ce",
-    measurementId: "G-R15NZZ1KV4"
-});
+// firebase.js
 
-// Inicializar Firebase
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
+// Configuración de Firebase
+const firebaseConfig = {
+    apiKey: "AIzaSyDr11O0ExK3FBaaeV6bBWjku1OkHbEMqBM",
+    authDomain: "rimaniaslots.firebaseapp.com",
+    projectId: "rimaniaslots",
+    storageBucket: "rimaniaslots.appspot.com",
+    messagingSenderId: "964729869372",
+    appId: "1:964729869372:web:46e74ac0c3d6b72f311f39",
+    measurementId: "G-0ESG1NRL6H"
+};
+
+// Inicializa Firebase
+firebase.initializeApp(firebaseConfig);
+const auth = firebase.auth();
+const db = firebase.firestore();
